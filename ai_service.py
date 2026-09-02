@@ -127,4 +127,4 @@ def generate_campaign_structure(tipo_negocio: str, estrategia: str, description:
             raise ValueError("No se encontró JSON válido en la respuesta de Gemini")
     except Exception as e:
         print(f"Error generando campaña: {e}")
-        return {"error": "No se pudo generar la campaña"}
+        return {"error": f"Detalle Técnico de Google: {str(e)}"}
