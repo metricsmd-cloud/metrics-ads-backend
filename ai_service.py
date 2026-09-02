@@ -8,8 +8,8 @@ API_KEY = os.getenv("GEMINI_API_KEY", "")
 if API_KEY:
     genai.configure(api_key=API_KEY)
 
-# Usaremos un modelo rápido y barato ideal para razonamiento lógico
-model = genai.GenerativeModel('gemini-1.5-flash')
+# Usaremos el modelo Pro estable para máxima compatibilidad
+model = genai.GenerativeModel('gemini-pro')
 
 def analyze_ad_performance(ad_metrics):
     """
