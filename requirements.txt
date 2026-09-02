@@ -1,0 +1,9 @@
+fastapi
+uvicorn
+sqlalchemy
+pydantic
+apscheduler
+google-generativeai
+facebook-business
+python-dotenv
+psycopg2-binary
