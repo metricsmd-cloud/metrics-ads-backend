@@ -9,7 +9,7 @@ if API_KEY:
     genai.configure(api_key=API_KEY)
 
 # Usaremos un modelo rápido y barato ideal para razonamiento lógico
-model = genai.GenerativeModel('gemini-2.5-flash')
+model = genai.GenerativeModel('gemini-1.5-flash')
 
 def analyze_ad_performance(ad_metrics):
     """
