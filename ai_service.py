@@ -97,13 +97,16 @@ def generate_campaign_structure(tipo_negocio: str, estrategia: str, description:
     }}
     """
     
-    url = f"https://generativelanguage.googleapis.com/v1beta/models/gemini-1.0-pro:generateContent?key={API_KEY}"
+    url = f"https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key={API_KEY}"
     payload = {"contents": [{"parts": [{"text": prompt}]}]}
     try:
         res = requests.post(url, json=payload)
         data = res.json()
         if "error" in data:
-            return {"error": f"Detalle Técnico Google: {data['error']['message']}"}
+            list_url = f"https://generativelanguage.googleapis.com/v1beta/models?key={API_KEY}"
+            list_res = requests.get(list_url).json()
+            models_list = [m["name"] for m in list_res.get("models", [])]
+            return {"error": f"Modelos disponibles en tu cuenta: {', '.join(models_list)}"}
             
         text = data["candidates"][0]["content"]["parts"][0]["text"].strip()
         start_idx = text.find('{')
