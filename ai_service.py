@@ -116,11 +116,15 @@ def generate_campaign_structure(tipo_negocio: str, estrategia: str, description:
     try:
         response = model.generate_content(prompt)
         text = response.text.strip()
-        if text.startswith("```json"):
-            text = text.replace("```json", "", 1)
-        if text.endswith("```"):
-            text = text[:-3]
-        return json.loads(text)
+        
+        # Parseo robusto: buscar el primer '{' y el último '}'
+        start_idx = text.find('{')
+        end_idx = text.rfind('}')
+        if start_idx != -1 and end_idx != -1:
+            clean_json = text[start_idx:end_idx+1]
+            return json.loads(clean_json)
+        else:
+            raise ValueError("No se encontró JSON válido en la respuesta de Gemini")
     except Exception as e:
         print(f"Error generando campaña: {e}")
         return {"error": "No se pudo generar la campaña"}
