@@ -103,10 +103,7 @@ def generate_campaign_structure(tipo_negocio: str, estrategia: str, description:
         res = requests.post(url, json=payload)
         data = res.json()
         if "error" in data:
-            list_url = f"https://generativelanguage.googleapis.com/v1beta/models?key={API_KEY}"
-            list_res = requests.get(list_url).json()
-            models_list = [m["name"] for m in list_res.get("models", [])]
-            return {"error": f"Modelos disponibles en tu cuenta: {', '.join(models_list)}"}
+            return {"error": f"Error de Google: {data['error']['message']} (Código: {data['error'].get('code', 'N/A')})"}
             
         text = data["candidates"][0]["content"]["parts"][0]["text"].strip()
         start_idx = text.find('{')
