@@ -28,7 +28,7 @@ def analyze_ad_performance(ad_metrics):
     Devuelve estrictamente un JSON válido con dos claves: "action" y "reason".
     """
     
-    url = f"https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key={API_KEY}"
+    url = f"https://generativelanguage.googleapis.com/v1beta/models/gemini-flash-latest:generateContent?key={API_KEY}"
     payload = {"contents": [{"parts": [{"text": prompt}]}]}
     try:
         res = requests.post(url, json=payload)
@@ -97,7 +97,7 @@ def generate_campaign_structure(tipo_negocio: str, estrategia: str, description:
     }}
     """
     
-    url = f"https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key={API_KEY}"
+    url = f"https://generativelanguage.googleapis.com/v1beta/models/gemini-flash-latest:generateContent?key={API_KEY}"
     payload = {"contents": [{"parts": [{"text": prompt}]}]}
     try:
         res = requests.post(url, json=payload)
