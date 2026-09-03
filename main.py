@@ -40,13 +40,13 @@ def run_ai_analysis():
 
 @contextlib.asynccontextmanager
 async def lifespan(app: FastAPI):
-    # Inicializar el Cron Job para correr en segundo plano
-    scheduler = BackgroundScheduler()
-    # Configurado para correr cada 1 minuto en ambiente de desarrollo
-    scheduler.add_job(run_ai_analysis, 'interval', minutes=1)
-    scheduler.start()
+    # APAGADO TEMPORAL: El robot de análisis de anuncios en segundo plano
+    # estaba consumiendo toda la cuota gratuita (Rate Limit) de Google Gemini.
+    # scheduler = BackgroundScheduler()
+    # scheduler.add_job(run_ai_analysis, 'interval', minutes=1)
+    # scheduler.start()
     yield
-    scheduler.shutdown()
+    # scheduler.shutdown()
 
 app = FastAPI(
     title="Metrics Ads API",
